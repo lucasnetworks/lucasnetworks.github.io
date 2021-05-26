@@ -3,19 +3,17 @@
 <head>
     <title>Smarty Address</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href='app.css'>
-    <link rel="stylesheet" href='typeahead.css'>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href='smarty_stress.css'>
 </head>
 
 <body>
-    <div class="smarty_address--form">
+    <div class="smarty_address--form smarty_street--autocomplete">
         <h3>Billing Address</h3>
-        <div class="form-row checkout-required us-autocomplete-pro-example">
+        <div class="form-row ">
             <label class="form-label" for="billing_street">Street Address:</label>
-            <div class="typeahead">
-                <input class="form-control" type="text" name="billing_street" id="billing_street" autocomplete="off"
-                    maxlength="30" value="" required>
-            </div>
+            <input class="form-control" id="billing_street" autocomplete="off" required>
+            <ul class="us-autocomplete-pro-menu" id="menu_billing" style="display:none;"></ul>
         </div>
         <div class="form-row ">
             <label class="form-label" for="billing_street2">Suite, Apartment, Unit:</label>
@@ -44,14 +42,12 @@
             <span class="input-span"></span>
         </div>
     </div>
-    <div class="smarty_address--form">
+    <div class="smarty_address--form smarty_street--autocomplete">
         <h3>Shipping Address</h3>
-        <div class="form-row checkout-required us-autocomplete-pro-example">
+        <div class="form-row checkout-required ">
             <label class="form-label" for="shipping_street">Street Address:</label>
-            <div class="typeahead">
-                <input class="form-control" type="text" name="shipping_street" id="shipping_street" autocomplete="off"
-                    maxlength="30" value="" required>
-            </div>
+            <input class="form-control" id="shipping_street" autocomplete="off">
+            <ul class="us-autocomplete-pro-menu" id="menu_shipping" style="display:none;"></ul>
         </div>
         <div class="form-row ">
             <label class="form-label" for="shipping_street2">Suite, Apartment, Unit:</label>
@@ -84,17 +80,21 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="typeahead.bundle.js"></script>
-    <script src="smart_address_typeahead.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.js"></script>
+    <script src="smarty_stress.js"></script>
     <script>
         var _billingSmartyAddress = $('#billing_street').smartyAddressTypeahead({
+            streetInputE1: '#billing_street',
+            menuE1: '#menu_billing',
             cityInputE1: '#billing_city',
             stateInputE1: '#billing_state',
             countryInputE1: '#billing_country',
             zipInputE1: '#billing_zip',
             authId: '16030419134078472'
         })
-        var _shippingSmartyAddress = $('#shipping_street').smartyAddressTypeahead({
+        var _billingSmartyAddress = $('#shipping_street').smartyAddressTypeahead({
+            streetInputE1: '#shipping_street',
+            menuE1: '#menu_shipping',
             cityInputE1: '#shipping_city',
             stateInputE1: '#shipping_state',
             countryInputE1: '#shipping_country',
